@@ -1,0 +1,41 @@
+[input ]l
+[output]No data.
+[input ]i
+[input ]John
+[input ]0937889965
+[input ]john@ntu.edu.tw
+[input ]l
+[output]#1
+[output]Name: John
+[output]Phone: 0937889965
+[output]Email: john@ntu.edu.tw
+[input ]i
+[input ]May
+[input ]0945625874
+[input ]may@ntu.edu.tw
+[input ]l
+[output]#1
+[output]Name: John
+[output]Phone: 0937889965
+[output]Email: john@ntu.edu.tw
+[output]#2
+[output]Name: May
+[output]Phone: 0945625874
+[output]Email: may@ntu.edu.tw
+[input ]s
+[input ]phonebook.txt
+[input ]c
+[input ]l
+[output]No data.
+[input ]o
+[input ]phonebook.txt
+[input ]l
+[output]#1
+[output]Name: John
+[output]Phone: 0937889965
+[output]Email: john@ntu.edu.tw
+[output]#2
+[output]Name: May
+[output]Phone: 0945625874
+[output]Email: may@ntu.edu.tw
+[input ]q
