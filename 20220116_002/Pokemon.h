@@ -10,7 +10,7 @@ public:
 
     void ShowInfo();
 
-    void Attack(Pokemon &Target);
+    void operator>>(Pokemon &Target);
 
     void Defence(int atkp);
 
@@ -31,7 +31,7 @@ class PokemonHealthCenter {
 public:
     PokemonHealthCenter(string);
 
-    void Cure(Pokemon &p);
+    void operator<<(Pokemon &p);
 
 private:
     string Name;
