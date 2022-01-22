@@ -24,7 +24,7 @@ public:
 
         // 檢查是否有紀錄檔，如果沒有創建一個
         if (!input.is_open()) {
-            cout << "帳號不存在，第一次使用!\n" << endl;
+            cout << "帳號不存在，第一次使用!" << endl;
             Money = 0;
 
             // 如果沒有record.txt檔，建立一個
@@ -57,18 +57,19 @@ public:
                 new_token = strtok(NULL, "\t");
             }
             if (userExit) {
+                cout << "eCash: 帳號開啟完成!" << endl;
                 for (i = 0; i < 3; i++) {
                     if (i == 0) {
                         ID = userInfoArray[i];
                     } else if (i == 1) {
-                        Money = stoi(userInfoArray[i]);
+                        Money = stoll(userInfoArray[i]);
                     }
                 }
             }
 
             // 如果使用者不存在於系統中，創建使用者
             if (!userExit) {
-                cout << "帳號不存在，第一次使用!\n" << endl;
+                cout << "帳號不存在，第一次使用!" << endl;
                 Money = 0;
 
                 ofstream recordNewUser("record.txt", ios_base::app);
@@ -95,7 +96,14 @@ public:
     }
 
     void pay(int m) {
-
+        if (m <= 0) {
+            cout << "eCash: 請輸入大餘0的金額" << endl;
+        } else if (m > Money) {
+            cout << "eCash: 您的錢不夠" << endl;
+        } else {
+            cout << "eCash: 您花了" << m << "元" << endl;
+            Money -= m;
+        }
     }
 
     void option_display() {
@@ -113,6 +121,8 @@ public:
             cout << "eCash: 請輸入您的帳號:";
             cin >> ID;
             login();
+        } else if (executionTimes == -1) {
+            cout << "eCash: 您尚有" << Money << "元" << endl;
         } else {
             option_display();
         }
@@ -158,7 +168,7 @@ public:
     }
 
 private:
-    int Money;
+    long long Money;
     string ID;
 
 };
@@ -166,25 +176,30 @@ private:
 int main() {
     int ctrlLoop = 1;
     int count = 0;
-    int m;
-    char opt;
+    long long m;
+    string opt;
     eCashSystem eCash;
     while (ctrlLoop) {
         eCash.display(count);
-        scanf(" %c", &opt);
-        switch (opt) {
-            case 's':
-                cout << "請輸入儲存金額:" << endl;
-                scanf("%d", &m);
-                eCash.store(m);
-                break;
-            case 'd':
-                break;
-            case 'q':
-                eCash.logout();
-                ctrlLoop = 0;
-                break;
+        cin >> opt;
+        if (opt == "s") {
+            cout << "請輸入儲存金額:" << endl;
+            cin >> m;
+            eCash.store(m);
+        } else if (opt == "d") {
+            eCash.display(-1);
+        } else if (opt == "p") {
+            eCash.display(-1);
+            cout << "請輸入消費金額:" << endl;
+            cin >> m;
+            eCash.pay(m);
+        } else if (opt == "q") {
+            eCash.logout();
+            ctrlLoop = 0;
+        } else {
+            cout << "Sorry, 無此功能" << endl;
         }
+
         count++;
     }
 
