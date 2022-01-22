@@ -1,2 +1,2 @@
-Andy	0
-Andy	0
+Andy	500
+Bob	100500
